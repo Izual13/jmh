@@ -53,5 +53,10 @@ public class StringHashcodeBenchmark {
 
         new Runner(opt).run();
     }
+
+    //Benchmark                        Mode  Cnt           Score           Error  Units
+    //StringHashcodeBenchmark.java    thrpt    5    60204752,212 �   6531133,317  ops/s
+    //StringHashcodeBenchmark.lombok  thrpt    5   187987264,464 �  10774943,017  ops/s
+    //StringHashcodeBenchmark.stub    thrpt    5  1314261716,445 � 230614042,874  ops/s
 }
 

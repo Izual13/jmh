@@ -12,7 +12,7 @@ public class RandomUtils {
     }
 
     public static String getString(int count) {
-        StringBuffer result = new StringBuffer(count);
+        StringBuilder result = new StringBuilder(count);
         ThreadLocalRandom random = ThreadLocalRandom.current();
         for (int i = 0; i < count; i++) {
             result.append(alpha.charAt(random.nextInt(alpha.length())));

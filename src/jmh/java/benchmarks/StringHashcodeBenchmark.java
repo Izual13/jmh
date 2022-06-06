@@ -45,7 +45,7 @@ public class StringHashcodeBenchmark {
 
     public static void main(String[] args) throws RunnerException {
         Options opt = new OptionsBuilder()
-                .include(StringHashcodeBenchmark.class.getSimpleName())
+                .include("benchmarks\\.StringHashcodeBenchmark")
                 .forks(1)
                 .jvmArgs("-ea")
                 .warmupIterations(3)

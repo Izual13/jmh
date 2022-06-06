@@ -1,5 +1,6 @@
 package benchmarks;
 
+import com.example.jmh.B1.IdeaMisc;
 import com.example.jmh.B1.Java7Misc;
 import com.example.jmh.B1.LombokMisc;
 import com.example.jmh.StabModel;
@@ -19,12 +20,14 @@ public class HashcodeBenchmark {
     Java7Misc java;
     LombokMisc lombok;
     StabModel stub;
+    IdeaMisc idea;
 
     @Setup
     public void prepare() {
         java = new Java7Misc();
         lombok = new LombokMisc();
         stub = new StabModel();
+        idea = new IdeaMisc();
     }
 
 
@@ -43,9 +46,14 @@ public class HashcodeBenchmark {
         bh.consume(stub.hashCode());
     }
 
+    @Benchmark
+    public void idea(Blackhole bh) {
+        bh.consume(idea.hashCode());
+    }
+
     public static void main(String[] args) throws RunnerException {
         Options opt = new OptionsBuilder()
-                .include(HashcodeBenchmark.class.getSimpleName())
+                .include("benchmarks\\.HashcodeBenchmark")
                 .forks(1)
                 .jvmArgs("-ea")
                 .warmupIterations(3)

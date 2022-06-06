@@ -1,11 +1,12 @@
-package com.example.jmh;
+package com.example.jmh.B1;
 
+import com.example.jmh.RandomUtils;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @Getter
 @EqualsAndHashCode
-public class LombokModel {
+public class LombokMisc {
     private final int i1;
     private final int i2;
     private final int i3;
@@ -18,7 +19,7 @@ public class LombokModel {
     private final String s4;
     private final String s5;
 
-    public LombokModel() {
+    public LombokMisc() {
         i1 = RandomUtils.getInt();
         i2 = RandomUtils.getInt();
         i3 = RandomUtils.getInt();

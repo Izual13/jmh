@@ -1,7 +1,7 @@
 package benchmarks;
 
-import com.example.jmh.B1.Java7Misc;
 import com.example.jmh.B1.LombokMisc;
+import com.example.jmh.B2.Java7Strings;
 import com.example.jmh.StabModel;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Scope;
@@ -14,17 +14,17 @@ import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 @State(Scope.Benchmark)
-public class HashcodeBenchmark {
+public class StringHashcodeBenchmark {
 
-    Java7Misc java;
+    Java7Strings java;
     LombokMisc lombok;
-    StabModel stub;
+    StabModel stabModel;
 
     @Setup
     public void prepare() {
-        java = new Java7Misc();
+        java = new Java7Strings();
         lombok = new LombokMisc();
-        stub = new StabModel();
+        stabModel = new StabModel();
     }
 
 
@@ -40,12 +40,12 @@ public class HashcodeBenchmark {
 
     @Benchmark
     public void stub(Blackhole bh) {
-        bh.consume(stub.hashCode());
+        bh.consume(stabModel.hashCode());
     }
 
     public static void main(String[] args) throws RunnerException {
         Options opt = new OptionsBuilder()
-                .include(HashcodeBenchmark.class.getSimpleName())
+                .include(StringHashcodeBenchmark.class.getSimpleName())
                 .forks(1)
                 .jvmArgs("-ea")
                 .warmupIterations(3)

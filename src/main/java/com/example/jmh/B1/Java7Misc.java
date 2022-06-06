@@ -1,9 +1,11 @@
-package com.example.jmh;
+package com.example.jmh.B1;
+
+import com.example.jmh.RandomUtils;
 
 import java.util.Objects;
 
 
-public class Java7Model {
+public class Java7Misc {
     private final int i1;
     private final int i2;
     private final int i3;
@@ -16,7 +18,7 @@ public class Java7Model {
     private final String s4;
     private final String s5;
 
-    public Java7Model() {
+    public Java7Misc() {
         i1 = RandomUtils.getInt();
         i2 = RandomUtils.getInt();
         i3 = RandomUtils.getInt();
@@ -73,7 +75,7 @@ public class Java7Model {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Java7Model that = (Java7Model) o;
+        Java7Misc that = (Java7Misc) o;
         return i1 == that.i1 && i2 == that.i2 && i3 == that.i3 && i4 == that.i4 && i5 == that.i5 && Objects.equals(s1, that.s1) && Objects.equals(s2, that.s2) && Objects.equals(s3, that.s3) && Objects.equals(s4, that.s4) && Objects.equals(s5, that.s5);
     }
 

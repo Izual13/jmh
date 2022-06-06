@@ -1,6 +1,6 @@
 package benchmarks;
 
-import com.example.jmh.Java8Model;
+import com.example.jmh.Java7Model;
 import com.example.jmh.LombokModel;
 import com.example.jmh.StabModel;
 import org.openjdk.jmh.annotations.Benchmark;
@@ -16,13 +16,13 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 @State(Scope.Benchmark)
 public class HashcodeBenchmark {
 
-    Java8Model java8Model;
+    Java7Model java7Model;
     LombokModel lombokModel;
     StabModel stabModel;
 
     @Setup
     public void prepare() {
-        java8Model = new Java8Model();
+        java7Model = new Java7Model();
         lombokModel = new LombokModel();
         stabModel = new StabModel();
     }
@@ -30,7 +30,7 @@ public class HashcodeBenchmark {
 
     @Benchmark
     public void java8ModelHashCode(Blackhole bh) {
-        bh.consume(java8Model.hashCode());
+        bh.consume(java7Model.hashCode());
     }
 
     @Benchmark

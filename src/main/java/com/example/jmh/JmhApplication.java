@@ -39,7 +39,9 @@ public class JmhApplication {
 
         @GetMapping
         private String hello() {
-            scheduledExecutorService.scheduleAtFixedRate(() -> dbService.put(UUID.randomUUID().toString(), UUID.randomUUID().toString()), 10, 10, TimeUnit.SECONDS);
+            for (int i = 0; i < 1000; i++) {
+                scheduledExecutorService.scheduleAtFixedRate(() -> dbService.put(UUID.randomUUID().toString(), UUID.randomUUID().toString()), 10, 1, TimeUnit.SECONDS);
+            }
             return "hello!";
         }
     }

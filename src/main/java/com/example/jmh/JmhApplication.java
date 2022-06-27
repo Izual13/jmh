@@ -29,7 +29,7 @@ public class JmhApplication {
     static class Hello {
 
         private final DbService dbService;
-        private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(10);
+        private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1000);
 
         @PostConstruct
         private void init() {

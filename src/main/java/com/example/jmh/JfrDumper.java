@@ -15,7 +15,7 @@ import java.time.Instant;
 
 @Slf4j
 @Service
-//-XX:StartFlightRecording=maxsize=200M,duration=60s,filename=./build
+//-XX:StartFlightRecording=disk=true,maxsize=10g,maxage=24h,filename=./recording.jfr -XX:FlightRecorderOptions=repository=./build/,maxchunksize=50m,stackdepth=100
 public class JfrDumper {
     private Thread thread;
 
@@ -32,8 +32,8 @@ public class JfrDumper {
                     new File("build/dumps").mkdir();
 
                     var snapshot = FlightRecorder.getFlightRecorder().takeSnapshot();
-                    snapshot.setMaxSize(10);
-                    snapshot.setMaxAge(Duration.ofMinutes(1));
+                    snapshot.setMaxSize(100);
+                    snapshot.setMaxAge(Duration.ofMinutes(100));
 
                     snapshot.dump(new File("build/dumps/" + Instant.now().toString() + ".jfr").toPath());
                     log.info("jfr snapshot was dumped");

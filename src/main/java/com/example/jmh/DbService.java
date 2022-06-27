@@ -3,10 +3,7 @@ package com.example.jmh;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import lombok.extern.slf4j.Slf4j;
-import org.rocksdb.Options;
-import org.rocksdb.RocksDB;
-import org.rocksdb.RocksDBException;
-import org.rocksdb.Statistics;
+import org.rocksdb.*;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
@@ -29,7 +26,7 @@ public class DbService {
         options = new Options().setCreateIfMissing(true).setStatistics(new Statistics());
 
         try {
-            db = RocksDB.open(options, "build/rocksDB");
+            db = TtlDB.open(options, "build/rocksDB", 10, false);
         } catch (RocksDBException e) {
             log.error("RocksDBException", e);
         }
@@ -37,8 +34,9 @@ public class DbService {
         dbStats = new Thread(() -> {
             while (true) {
                 try {
+                    //todo: get something from stats
                     var stats = options.statistics();
-                    log.info("rocks stats: " + stats);
+                    log.info("rocks stats: " + db.getProperty("rocksdb.estimate-num-keys"));
                     Thread.sleep(60000L);
                 } catch (Throwable th) {
                     log.error("db stats error: ", th);
